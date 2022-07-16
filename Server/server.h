@@ -4,9 +4,6 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-
-
-
 typedef enum EN_transState_t
 {
 APPROVED, DECLINED_INSUFFECIENT_FUND, DECLINED_STOLEN_CARD, INTERNAL_SERVER_ERROR
@@ -19,7 +16,7 @@ typedef enum EN_serverError_t
 
 typedef struct ST_accountsDB_t
 {
-    uint8_t isBlocked;
+    uint8_t isBlocked; // adding an Extra variable in case the customer want to block anyone from using his card
     float balance;
     uint8_t primaryAccountNumber[20];
 

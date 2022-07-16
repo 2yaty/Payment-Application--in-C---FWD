@@ -80,7 +80,6 @@ EN_terminalError_t runTerminal(ST_terminalData_t *termData , ST_cardData_t *card
         return error;
     }
 
-
     error = isValidCardPAN(cardData);
 
     if (error != OK)
@@ -89,7 +88,6 @@ EN_terminalError_t runTerminal(ST_terminalData_t *termData , ST_cardData_t *card
 
         return error;
     }
-
 
     error = getTransactionAmount(termData);
 
@@ -115,8 +113,6 @@ EN_transState_t runServer(ST_transaction_t *transData){
     printf("\n");
     printf("*--------------------- SERVER RESPONSE --------------------*\n");
     EN_transState_t serverError = recieveTransactionData(transData);
-
-
 
     switch (serverError) {
 

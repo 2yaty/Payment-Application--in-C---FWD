@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <time.h>
 #include "terminal.h"
-#define charToInt(x) ((x) % 48)
+#define charToInt(x) ((x) % 48) // to convert a character to a number
 
 
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData){
 
+    // getting the time from the system
     time_t now =time(NULL) ;
 
     struct  tm* cur_time = localtime(&now);
@@ -19,6 +20,7 @@ return OK;
 }
 EN_terminalError_t isCardExpired(ST_cardData_t cardData, ST_terminalData_t termData){
 
+    // transforming the date into a numeric values to check it easily
     uint8_t card_month = charToInt(cardData.cardExpirationDate[0]) * 10 + charToInt(cardData.cardExpirationDate[1]);
     uint8_t card_year = charToInt(cardData.cardExpirationDate[3]) * 10 + charToInt(cardData.cardExpirationDate[4]);
 
@@ -38,30 +40,22 @@ EN_terminalError_t isCardExpired(ST_cardData_t cardData, ST_terminalData_t termD
 
 }
 EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData){
-    
-    uint8_t temp [25];
+
+    //Luhn check method
 
     uint8_t i = 0 , mult = 2 , sum = 0 , x;
 
     while (cardData->primaryAccountNumber[i] != '\0')
     {
+        // doubling the even placed digits from the leftmost
         x = charToInt(cardData->primaryAccountNumber[i]) * mult;
 
-
-
-        if (x > 9)
-        {
-
-            x = (x/10) + (x%10);
-            temp[i] = x+48;
-
-
-        } else{
-
-            temp[i] = x+48;
+        //if the doubled value is consisted of two digits sum them up
+        if (x > 9) {
+            x = (x / 10) + (x % 10);
         }
-        
 
+        // toggling the multiplier between one and two
         if (mult == 2)
         {
             mult--;
@@ -70,15 +64,14 @@ EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData){
         {
             mult++;
         }
-
-        sum += charToInt(temp[i]);
+        // summing up all the values to perform the last check
+        sum += x;
 
         i++;
         
     }
 
-    temp[i] = '\0';
-
+    // the final check is to see the summation is a multiplier of ten
     if (sum % 10 != 0)
     {
        return INVALID_CARD;
@@ -117,7 +110,6 @@ EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData){
     
 }
 EN_terminalError_t setMaxAmount(ST_terminalData_t *termData){
-
 
     float temp = 0;
 

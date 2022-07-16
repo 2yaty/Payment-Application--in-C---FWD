@@ -3,9 +3,9 @@
 #include <string.h>
 
 EN_cardError_t getCardHolderName(ST_cardData_t *cardData){
-    uint8_t temp [26];
-    printf("Please enter the card name: ");
 
+    uint8_t temp [26];  // acts as a buffer to check the user input
+    printf("Please enter the card name: ");
     gets(temp);
     uint32_t i = strlen(temp);
     if( i > 24 ||  i < 20  ){
@@ -22,7 +22,6 @@ EN_cardError_t getCardHolderName(ST_cardData_t *cardData){
 EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData){
 
     uint8_t temp [7];
-
     printf("Please enter the Expiry date as 'MM/YY' : ");
 
     gets(temp);

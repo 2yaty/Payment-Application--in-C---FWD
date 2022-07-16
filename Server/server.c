@@ -2,7 +2,10 @@
 #include "server.h"
 #include <string.h>
 
-ST_accountsDB_t database [255]={{0,500,"4117394584032808"}, {0,12000,"5370233590092076"},{0,5000,"5078034830297201"}};
+ST_accountsDB_t database [255]={{0,500,"4117394584032808"},
+                                {0,12000,"5370233590092076"},
+                                {0,5000,"5078034830297201"}};
+
 ST_transaction_t transactions [255] = {0};
 
 float temp_current_card_balance = -1;
@@ -31,7 +34,6 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData){
 
     transData->transState = APPROVED;
 
-
     if(saveTransaction(transData) != OK){
         return INTERNAL_SERVER_ERROR;
     }
@@ -43,6 +45,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData){
 
 
 }
+
 EN_serverError_t isValidAccount(ST_cardData_t *cardData){
 
     for (int i = 0; i < 255; i++) {
@@ -62,6 +65,7 @@ EN_serverError_t isValidAccount(ST_cardData_t *cardData){
 
     return DECLINED_STOLEN_CARD;
 }
+
 EN_serverError_t isAmountAvailable(ST_terminalData_t *termData){
 
     if(temp_current_card_balance > 0 && termData->transAmount <= temp_current_card_balance){
@@ -69,16 +73,13 @@ EN_serverError_t isAmountAvailable(ST_terminalData_t *termData){
     }
 
     return LOW_BALANCE;
-
 }
-
-
 
 EN_serverError_t saveTransaction(ST_transaction_t *transData){
 
-
     for (int i = 0; i < 255; i++) {
 
+        //looking for an Empty place to add the new transaction
         if(transactions[i].transactionSequenceNumber == 0 && transactions[i].cardHolderData.primaryAccountNumber[0] == '\0'){
 
             transactions[i] = *transData;
