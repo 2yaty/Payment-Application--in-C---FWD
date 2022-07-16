@@ -89,10 +89,8 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData){
     }
 
     return SAVING_FAILED;
-
-
+    
 }
-
 
 EN_serverError_t getTransaction(uint32_t transactionSequenceNumber, ST_transaction_t *transData){
 

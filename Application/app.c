@@ -26,8 +26,6 @@ void appStart(void){
 
     runServer(&newTransaction);
 
-//    printf("\n%f",database[0].balance);
-
 }
 
 EN_cardError_t getCardData(ST_cardData_t *cardData){
