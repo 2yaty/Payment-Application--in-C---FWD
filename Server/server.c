@@ -104,12 +104,3 @@ EN_serverError_t getTransaction(uint32_t transactionSequenceNumber, ST_transacti
 
     return OK;
 }
-/*
-int main(void){
-
-    printf("hi");
-//    uint32_t i = transactions[0].transactionSequenceNumber ;
-//    printf("hi %d" , i);
-    return 0;
-}
-*/
