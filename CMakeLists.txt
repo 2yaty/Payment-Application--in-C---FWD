@@ -11,6 +11,7 @@ include_directories(Terminal)
 include_directories(Data Types)
 
 add_executable(Payment_Application__in_C___FWD
+        Main.c
         Application/app.c
         Application/app.h
         Server/server.h

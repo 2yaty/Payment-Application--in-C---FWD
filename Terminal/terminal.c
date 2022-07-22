@@ -18,10 +18,11 @@ return OK;
     
 
 }
+
 EN_terminalError_t isCardExpired(ST_cardData_t cardData, ST_terminalData_t termData){
 
     // transforming the date into a numeric values to check it easily
-    uint8_t card_month = charToInt(cardData.cardExpirationDate[0]) * 10 + charToInt(cardData.cardExpirationDate[1]);
+    uint8_t card_month = charToInt(cardData.cardExpirationDate[0]) * 10 + charToInt(cardData.cardExpirationDate[1]);//11/23
     uint8_t card_year = charToInt(cardData.cardExpirationDate[3]) * 10 + charToInt(cardData.cardExpirationDate[4]);
 
     uint8_t curr_month = charToInt(termData.transactionDate[3]) * 10 + charToInt(termData.transactionDate[4]);
@@ -39,33 +40,34 @@ EN_terminalError_t isCardExpired(ST_cardData_t cardData, ST_terminalData_t termD
     return OK;
 
 }
+
 EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData){
 
     //Luhn check method
 
-    uint8_t i = 0 , mult = 2 , sum = 0 , x;
+    uint8_t i = 0 , multiplier = 2 , sum = 0 , temp;
 
     while (cardData->primaryAccountNumber[i] != '\0')
     {
         // doubling the even placed digits from the leftmost
-        x = charToInt(cardData->primaryAccountNumber[i]) * mult;
+        temp = charToInt(cardData->primaryAccountNumber[i]) * multiplier;
 
         //if the doubled value is consisted of two digits sum them up
-        if (x > 9) {
-            x = (x / 10) + (x % 10);
+        if (temp > 9) {
+            temp = (temp / 10) + (temp % 10);
         }
 
         // toggling the multiplier between one and two
-        if (mult == 2)
+        if (multiplier == 2)
         {
-            mult--;
+            multiplier--;
         }
         else
         {
-            mult++;
+            multiplier++;
         }
         // summing up all the values to perform the last check
-        sum += x;
+        sum += temp;
 
         i++;
         
@@ -83,19 +85,14 @@ EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData){
 
 EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData){
 
-    float temp = 0;
-
     printf("Please Enter Transaction Amount: ");
 
-    scanf_s("%f",&temp);
+    scanf_s("%f",&termData->transAmount);
 
-    if (temp <= 0)
+    if (termData->transAmount <= 0)
     {
         return INVALID_AMOUNT;
     }
-    
-    termData->transAmount = temp;
-
     return OK;
 
 }
@@ -109,22 +106,48 @@ EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData){
     return OK;
     
 }
-EN_terminalError_t setMaxAmount(ST_terminalData_t *termData){
 
-    float temp = 0;
+EN_terminalError_t setMaxAmount(ST_terminalData_t *termData){
 
     printf("Please Enter the max amount :");
 
-    scanf_s("%f", &temp);
+    scanf_s("%f", &termData->maxTransAmount);
 
-    if (temp <= 0)
+    if (termData->maxTransAmount<= 0)
     {
         return INVALID_MAX_AMOUNT;
     }
 
-    termData->maxTransAmount = temp;
-
     return OK;
+
+}
+
+/*
+int main (void){
+
+    ST_cardData_t  cardData = {"Mohamed Ali Qiaty Mohame" , "4117394584032808" , "11/21"};
+    ST_terminalData_t terminalData ;
+
+    EN_terminalError_t error = setMaxAmount(&terminalData);
+
+    if(error != OK){
+        printf("the amount is not valid ");
+    }
+    else {
+        printf("the amount is valid ");
+    }
+
+    getTransactionAmount(&terminalData);
+
+    error = isBelowMaxAmount(&terminalData);
+
+    if(error != OK){
+        printf("the amount is not valid ");
+    }
+    else {
+        printf("the amount is valid ");
+    }
 
 
 }
+ */

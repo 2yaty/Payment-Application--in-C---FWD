@@ -21,7 +21,7 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData){
     gets(cardData->cardExpirationDate);
     uint32_t i = strlen(cardData->cardExpirationDate);
 
-    if( i != 5  ){
+    if( i != 5 || cardData->cardExpirationDate[2] != '/'){
         return WRONG_EXP_DATE;
     }
 
@@ -41,16 +41,17 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData){
     return OK ;
 }
 
-
+/*
 int main (void){
 
 
-    ST_cardData_t buyer;
-    EN_cardError_t error = getCardHolderName(&buyer);
+    ST_cardData_t buyer ;
+    EN_cardError_t error = getCardPAN(&buyer);
 
-    if(error == WRONG_NAME){
-        printf("Wrong name ");
+    if(error == WRONG_PAN){
+        printf("Wrong PAN ");
     } else{
-        printf("the name is correct");
+        printf(" correct PAN");
     }
 }
+ */

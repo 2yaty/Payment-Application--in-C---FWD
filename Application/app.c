@@ -140,9 +140,3 @@ EN_transState_t runServer(ST_transaction_t *transData){
 
 
 }
-int main (void){
-
-    appStart();
-
-    return 0;
-}
