@@ -11,12 +11,12 @@ APPROVED, DECLINED_INSUFFECIENT_FUND, DECLINED_STOLEN_CARD, INTERNAL_SERVER_ERRO
 
 typedef enum EN_serverError_t
 {
- SAVING_FAILED, TRANSACTION_NOT_FOUND, ACCOUNT_NOT_FOUND, LOW_BALANCE
+ SERVER_OK,SAVING_FAILED, TRANSACTION_NOT_FOUND, ACCOUNT_NOT_FOUND, LOW_BALANCE
 }EN_serverError_t ;
 
 typedef struct ST_accountsDB_t
 {
-    uint8_t isBlocked; // adding an Extra variable in case the customer want to block anyone from using his card
+     // adding an Extra variable in case the customer want to block anyone from using his card
     float balance;
     uint8_t primaryAccountNumber[20];
 
@@ -36,5 +36,7 @@ EN_serverError_t isValidAccount(ST_cardData_t *cardData);
 EN_serverError_t isAmountAvailable(ST_terminalData_t *termData);
 EN_serverError_t saveTransaction(ST_transaction_t *transData);
 EN_serverError_t getTransaction(uint32_t transactionSequenceNumber, ST_transaction_t *transData);
+EN_transState_t updateBalance ( float transAmount);
+uint8_t isBlocked (ST_cardData_t cardData);
 
 #endif

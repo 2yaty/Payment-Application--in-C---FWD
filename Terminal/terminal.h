@@ -12,7 +12,7 @@ uint8_t transactionDate[11];
 
 typedef enum EN_terminalError_t
 {
-  WRONG_DATE, EXPIRED_CARD, INVALID_CARD, INVALID_AMOUNT, EXCEED_MAX_AMOUNT, INVALID_MAX_AMOUNT
+  TERMINAL_OK,WRONG_DATE, EXPIRED_CARD, INVALID_CARD, INVALID_AMOUNT, EXCEED_MAX_AMOUNT, INVALID_MAX_AMOUNT
 }EN_terminalError_t ;
 
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData);

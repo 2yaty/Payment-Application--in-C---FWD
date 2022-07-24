@@ -7,7 +7,7 @@ void appStart(void){
 
     EN_cardError_t  cardError =  getCardData(&newCard);
 
-    if(cardError != OK){
+    if(cardError != CARD_OK){
         return;
     }
 
@@ -15,7 +15,7 @@ void appStart(void){
 
     EN_terminalError_t terminalError = runTerminal(&newTerminal , &newCard);
 
-    if(terminalError != OK){
+    if(terminalError != CARD_OK){
         return;
     }
 
@@ -37,7 +37,7 @@ EN_cardError_t getCardData(ST_cardData_t *cardData){
     error = getCardHolderName(cardData);
 
 
-    if (error != OK)
+    if (error != CARD_OK)
     {
         printf("\nWrong Name");
         return error;
@@ -47,7 +47,7 @@ EN_cardError_t getCardData(ST_cardData_t *cardData){
     error = getCardExpiryDate(cardData);
 
 
-    if (error != OK)
+    if (error != CARD_OK)
     {
         printf("\nWrong Date");
         return error;
@@ -55,13 +55,13 @@ EN_cardError_t getCardData(ST_cardData_t *cardData){
 
     error =getCardPAN(cardData);
 
-    if (error != OK)
+    if (error != CARD_OK)
     {
         printf("\nWrong Num");
         return error;
     }
 
-    return OK;
+    return CARD_OK;
 }
 EN_terminalError_t runTerminal(ST_terminalData_t *termData , ST_cardData_t *cardData){
 
@@ -74,7 +74,7 @@ EN_terminalError_t runTerminal(ST_terminalData_t *termData , ST_cardData_t *card
 
     error = isCardExpired(*cardData , *termData);
 
-    if (error != OK)
+    if (error != TERMINAL_OK)
     {
         printf("\nCard is Expired");
         return error;
@@ -82,7 +82,7 @@ EN_terminalError_t runTerminal(ST_terminalData_t *termData , ST_cardData_t *card
 
     error = isValidCardPAN(cardData);
 
-    if (error != OK)
+    if (error != TERMINAL_OK)
     {
         printf("\nCard is not Valid");
 
@@ -91,7 +91,7 @@ EN_terminalError_t runTerminal(ST_terminalData_t *termData , ST_cardData_t *card
 
     error = getTransactionAmount(termData);
 
-    if (error != OK)
+    if (error != TERMINAL_OK)
     {
         printf("\nInvalid Amount");
 
@@ -100,14 +100,14 @@ EN_terminalError_t runTerminal(ST_terminalData_t *termData , ST_cardData_t *card
 
     error = isBelowMaxAmount(termData);
 
-    if (error != OK)
+    if (error != TERMINAL_OK)
     {
         printf("\nExceeded the Maximum");
 
         return error;
     }
 
-    return OK;
+    return TERMINAL_OK;
 }
 EN_transState_t runServer(ST_transaction_t *transData){
     printf("\n");

@@ -14,7 +14,7 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData){
     strftime(termData->transactionDate  , 11 , "%d/%m/%Y",cur_time);
 
 
-return OK;
+return CARD_OK;
     
 
 }
@@ -37,7 +37,7 @@ EN_terminalError_t isCardExpired(ST_cardData_t cardData, ST_terminalData_t termD
         return EXPIRED_CARD;
     }
 
-    return OK;
+    return TERMINAL_OK;
 
 }
 
@@ -79,7 +79,7 @@ EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData){
        return INVALID_CARD;
     }
 
-    return OK;
+    return TERMINAL_OK;
     
 }
 
@@ -93,7 +93,7 @@ EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData){
     {
         return INVALID_AMOUNT;
     }
-    return OK;
+    return TERMINAL_OK;
 
 }
 
@@ -103,22 +103,15 @@ EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData){
     {
         return EXCEED_MAX_AMOUNT;
     }
-    return OK;
+    return TERMINAL_OK;
     
 }
 
 EN_terminalError_t setMaxAmount(ST_terminalData_t *termData){
 
-    printf("Please Enter the max amount :");
+    termData->maxTransAmount = 5000;
 
-    scanf_s("%f", &termData->maxTransAmount);
-
-    if (termData->maxTransAmount<= 0)
-    {
-        return INVALID_MAX_AMOUNT;
-    }
-
-    return OK;
+    return TERMINAL_OK;
 
 }
 
@@ -130,7 +123,7 @@ int main (void){
 
     EN_terminalError_t error = setMaxAmount(&terminalData);
 
-    if(error != OK){
+    if(error != CARD_OK){
         printf("the amount is not valid ");
     }
     else {
@@ -141,7 +134,7 @@ int main (void){
 
     error = isBelowMaxAmount(&terminalData);
 
-    if(error != OK){
+    if(error != CARD_OK){
         printf("the amount is not valid ");
     }
     else {

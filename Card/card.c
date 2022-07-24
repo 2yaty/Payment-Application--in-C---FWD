@@ -12,7 +12,7 @@ EN_cardError_t getCardHolderName(ST_cardData_t *cardData){
         return WRONG_NAME;
     }
 
-    return OK;
+    return CARD_OK;
 }
 
 EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData){
@@ -25,7 +25,7 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData){
         return WRONG_EXP_DATE;
     }
 
-    return OK;
+    return CARD_OK;
 }
 
 EN_cardError_t getCardPAN(ST_cardData_t *cardData){
@@ -38,7 +38,7 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData){
         return WRONG_PAN;
     }
 
-    return OK ;
+    return CARD_OK ;
 }
 
 /*

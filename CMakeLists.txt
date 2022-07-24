@@ -36,4 +36,5 @@ add_executable(Terminal Terminal/terminal.c
 add_executable(Server Server/server.c
         Server/server.h
         Terminal/terminal.h
-        Terminal/terminal.c)
+        Terminal/terminal.c
+        )
