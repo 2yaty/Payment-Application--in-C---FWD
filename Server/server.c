@@ -5,7 +5,7 @@
 
 ST_accountsDB_t current_Card ;
 uint8_t  card_index = 0; // used to go directly to the record in updating the balance
-
+uint64_t transactionNumber = 0;
 
 EN_transState_t recieveTransactionData(ST_transaction_t *transData){
 
@@ -28,6 +28,8 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData){
     updateBalance(transData->terminalData.transAmount);
 
     transData->transState = APPROVED;
+
+    transData->transactionSequenceNumber = transactionNumber++;
 
     if(saveTransaction(transData) != SERVER_OK){
         return INTERNAL_SERVER_ERROR;
@@ -79,7 +81,7 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData){
     if((transFilePtr = fopen("../Server/Database/transaction file.dat" , "rb+")) == NULL)
         return SAVING_FAILED;
 
-    fwrite(&transData , sizeof (ST_transaction_t) , 1 , transFilePtr);
+    fwrite(transData , sizeof (ST_transaction_t) , 1 , transFilePtr);
 
     fclose(transFilePtr);
 
@@ -238,6 +240,98 @@ int main (void){
 }
 */
 
+/**
+ * isValidAccount function testing
 
 
+int main (){
+    ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "4117394584032808" , "11/23"};
+
+    EN_serverError_t  error = isValidAccount(&cardData);
+
+    if(error == SERVER_OK)
+        puts("valid card");
+    else
+        puts("Account isn't in the data base ");
+}
+*/
+
+/**
+ * isAmountAvailable function testing
+
+ int main(){
+
+     current_Card.balance = 15000 ;
+
+     ST_terminalData_t  terminalData = { 500 , 5000,"24/07/2022"};
+
+    EN_serverError_t error = isAmountAvailable(&terminalData);
+
+    if(error == SERVER_OK)
+        puts("the amount is available ");
+    else
+        puts("the amount isn't available");
+ }
+*/
+
+/**
+ * saveTransaction function testing
+
+int main(){
+
+    ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "4117394584032808" , "11/23"};
+    ST_terminalData_t  terminalData = { 500 , 5000,"24/07/2022"};
+    ST_transaction_t transaction={cardData, terminalData,APPROVED,1};
+
+    saveTransaction(&transaction);
+
+    ST_transaction_t temp;
+
+    getTransaction(0,&temp);
+
+    printf("%s\n" , temp.cardHolderData.cardHolderName);
+    printf("%s" , temp.cardHolderData.primaryAccountNumber);
+
+}
+*/
+
+/**
+ * receiveTransactionData function testing
+
+int main(){
+
+    ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "4117394584032808" , "11/23"};
+    ST_terminalData_t  terminalData = { 500 , 5000,"24/07/2022"};
+    ST_transaction_t transaction={cardData, terminalData,APPROVED,1};
+
+    EN_transState_t error = recieveTransactionData(&transaction);
+
+    switch (error) {
+
+        case DECLINED_INSUFFECIENT_FUND:
+            printf("Low Balance");
+            return  0;
+
+        case DECLINED_STOLEN_CARD:
+            printf("Stolen Card");
+            return  0;
+
+        case INTERNAL_SERVER_ERROR :
+            printf("Transaction Couldn't be Saved ");
+            return  0;
+
+        case APPROVED:
+            printf("Transaction is done successfully");
+            return  0;
+
+    }
+    ST_transaction_t temp;
+
+    getTransaction(0,&temp);
+
+    printf("%s\n" , temp.cardHolderData.cardHolderName);
+    printf("%s" , temp.cardHolderData.primaryAccountNumber);
+
+}
+ */
 
