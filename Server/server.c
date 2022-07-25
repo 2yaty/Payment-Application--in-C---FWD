@@ -89,13 +89,6 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData){
 }
 
 EN_serverError_t getTransaction(uint32_t transactionSequenceNumber, ST_transaction_t *transData){
-/*
-    if(transactionSequenceNumber < 0 || transactionSequenceNumber > 255){
-        return ACCOUNT_NOT_FOUND;
-    }
-
-    *transData = transactions[transactionSequenceNumber];
-*/
 
     FILE* transFilePtr;
 
@@ -180,39 +173,6 @@ void writeSomeData (){
 
 
 }
-/*
-int compare (ST_accountsDB_t value1 , ST_accountsDB_t value2){
-
-    if(strcmp(value1.primaryAccountNumber , value2.primaryAccountNumber) != 0 )
-        return 0;
-    else
-        return 1;
-}
-
-void loadDatabase (HashTable* hashTable){
-    ST_accountsDB_t temp;
-    FILE* databaseFilePtr;
-    uint8_t error ;
-    if((databaseFilePtr = fopen("database file.dat","rb+")) == NULL){
-        puts("failed to load");
-        return;
-    }
-    while (!feof(databaseFilePtr)){
-        error = fread(&temp , sizeof (ST_accountsDB_t) , 1 , databaseFilePtr);
-
-        if(error == 0)
-            break;
-
-        hash_table_insert(hashTable , temp.primaryAccountNumber , temp.balance);
-
-
-    }
-    fclose(databaseFilePtr);
-
-
-}
-*/
-
 /*
 int main (void){
 

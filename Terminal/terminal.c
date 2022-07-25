@@ -115,32 +115,101 @@ EN_terminalError_t setMaxAmount(ST_terminalData_t *termData){
 
 }
 
-/*
-int main (void){
 
-    ST_cardData_t  cardData = {"Mohamed Ali Qiaty Mohame" , "4117394584032808" , "11/21"};
-    ST_terminalData_t terminalData ;
-
-    EN_terminalError_t error = setMaxAmount(&terminalData);
-
-    if(error != CARD_OK){
-        printf("the amount is not valid ");
-    }
-    else {
-        printf("the amount is valid ");
-    }
-
-    getTransactionAmount(&terminalData);
-
-    error = isBelowMaxAmount(&terminalData);
-
-    if(error != CARD_OK){
-        printf("the amount is not valid ");
-    }
-    else {
-        printf("the amount is valid ");
-    }
+/**
+* getTransactionDate function testing
 
 
+int main(){
+
+    ST_terminalData_t  terminalData ;
+
+    getTransactionDate(&terminalData);
+
+    printf("%s", terminalData.transactionDate);
 }
  */
+
+/**
+* isCardExpired function testing
+
+int main(){
+
+    ST_cardData_t  cardData = {"Mohamed Ali Qiaty mohame", "5370233590092076" , "11/22"};
+    ST_terminalData_t  terminalData ;
+
+    getTransactionDate(&terminalData);
+
+    EN_terminalError_t  error = isCardExpired(cardData , terminalData);
+
+    if(error == TERMINAL_OK) {
+        printf("card is not expired ");
+        return 0;
+    } else
+        printf("card is expired ");
+
+    return 0;
+
+}
+*/
+
+/**
+ * isValidCardPAN function testing
+
+
+int main(){
+    ST_cardData_t  cardData = {"Mohamed Ali Qiaty mohame", "5370233590092076" , "11/22"};
+
+    EN_terminalError_t error = isValidCardPAN(&cardData);
+
+    if(error == TERMINAL_OK){
+        printf("card is valid");
+        return 0;
+    } else
+        printf("card is not valid");
+
+    return 0;
+}
+*/
+
+/**
+* getTransactionAmount function testing
+
+
+int main(){
+
+    ST_terminalData_t  terminalData ;
+    EN_terminalError_t  error =getTransactionAmount(&terminalData);
+
+    if(error != TERMINAL_OK){
+        printf("the amount is not correct");
+        return 0;
+    }
+
+    printf("\n%f" , terminalData.transAmount);
+}
+*/
+
+/**
+ * isBelowMaxAmount function testing
+
+
+int main(){
+    ST_terminalData_t  terminalData ;
+
+    terminalData.transAmount = 4000;
+
+    setMaxAmount(&terminalData);
+
+    EN_terminalError_t error = isBelowMaxAmount(&terminalData);
+
+    if(error == TERMINAL_OK){
+
+        printf("the amount is valid ");
+        return 0;
+    }
+
+    printf("the amount is not valid");
+
+}
+*/

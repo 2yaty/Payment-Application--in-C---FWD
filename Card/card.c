@@ -55,3 +55,45 @@ int main (void){
     }
 }
  */
+
+/**
+* getCardHolderName function testing
+
+
+int main(){
+
+    ST_cardData_t buyer ;
+    EN_cardError_t error = getCardHolderName(&buyer);
+
+    if(error == CARD_OK){
+
+        printf("the name is correct");
+        return 0;
+    }
+
+    printf("the name is not correct ");
+
+}
+ */
+
+/**
+* getCardExpiryDate function testing
+*/
+
+/**
+* getCardPAN function testing
+
+
+int main(){
+
+    ST_cardData_t buyer ;
+    EN_cardError_t error = getCardPAN(&buyer);
+
+    if(error == CARD_OK){
+        printf("PAN is entered correctly ");
+        return 0;
+    }
+    printf("PAN is entered incorrectly ");
+
+}
+*/
