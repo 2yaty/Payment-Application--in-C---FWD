@@ -70,3 +70,14 @@
 250	552	6805430859479162	Server.exe	d0fc5a6b2f3cb703
 4	246	6805434704810770	CMakeFiles/Server.dir/Server/server.c.obj	c0c55442f8470c89
 246	477	6805434707120743	Server.exe	d0fc5a6b2f3cb703
+13	275	6805451473867272	CMakeFiles/Payment_Application__in_C___FWD.dir/Server/server.c.obj	c63ab261d0f1f503
+20	279	6805451473947269	CMakeFiles/Payment_Application__in_C___FWD.dir/Terminal/terminal.c.obj	d628aecef99b8891
+28	281	6805451473957262	CMakeFiles/Payment_Application__in_C___FWD.dir/Card/card.c.obj	5fdd7ffe5ce140f8
+4	281	6805451473957262	CMakeFiles/Payment_Application__in_C___FWD.dir/Main.c.obj	a79ae509aed7ad68
+282	534	6805451476638306	Payment_Application__in_C___FWD.exe	b6846d80d9700241
+28	271	6805452970555383	CMakeFiles/Payment_Application__in_C___FWD.dir/Main.c.obj	a79ae509aed7ad68
+4	281	6805452970765361	CMakeFiles/Payment_Application__in_C___FWD.dir/Server/server.c.obj	c63ab261d0f1f503
+22	303	6805452971055343	CMakeFiles/Payment_Application__in_C___FWD.dir/Application/app.c.obj	75d4f7022f2f171f
+303	507	6805452973005346	Payment_Application__in_C___FWD.exe	b6846d80d9700241
+3	117	6805454019828197	CMakeFiles/Payment_Application__in_C___FWD.dir/Main.c.obj	a79ae509aed7ad68
+118	288	6805454021457514	Payment_Application__in_C___FWD.exe	b6846d80d9700241
