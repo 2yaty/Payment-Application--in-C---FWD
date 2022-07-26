@@ -16,6 +16,8 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData){
     }
 
     if(isBlocked(transData->cardHolderData)) {
+        transData->transState = DECLINED_STOLEN_CARD;
+        saveTransaction(transData);
         return DECLINED_STOLEN_CARD;
     }
 
@@ -92,7 +94,7 @@ EN_serverError_t getTransaction(uint32_t transactionSequenceNumber, ST_transacti
 
     FILE* transFilePtr;
 
-    if((transFilePtr = fopen("../Server/Database/transaction file.dat" , "rb+")) == NULL)
+    if((transFilePtr = fopen("../Server/Database/transaction file.dat" , "rb")) == NULL)
         return TRANSACTION_NOT_FOUND;
 
     fseek(transFilePtr , (transactionSequenceNumber-1) * sizeof (ST_transaction_t) , SEEK_SET);
@@ -262,6 +264,7 @@ int main(){
 int main(){
 
     ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "5370233590092076" , "11/21"};
+    ST_cardData_t person = {"Mohiughjgghjh " , "535656565692076" , "11/21"};
     ST_terminalData_t  terminalData = { 500 , 5000,"24/07/2022"};
     ST_transaction_t transaction={cardData, terminalData,APPROVED,1};
 

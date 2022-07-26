@@ -87,3 +87,6 @@
 308	546	6805483764787481	Payment_Application__in_C___FWD.exe	b6846d80d9700241
 4	223	6805494192263459	CMakeFiles/Payment_Application__in_C___FWD.dir/Main.c.obj	a79ae509aed7ad68
 224	585	6805494195653457	Payment_Application__in_C___FWD.exe	b6846d80d9700241
+18	196	6805520146554612	CMakeFiles/Payment_Application__in_C___FWD.dir/Main.c.obj	a79ae509aed7ad68
+8	281	6805520147404601	CMakeFiles/Payment_Application__in_C___FWD.dir/Server/server.c.obj	c63ab261d0f1f503
+281	619	6805520150805719	Payment_Application__in_C___FWD.exe	b6846d80d9700241
