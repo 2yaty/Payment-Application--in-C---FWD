@@ -74,15 +74,28 @@ int main(){
     printf("the name is not correct ");
 
 }
- */
+*/
 
 /**
 * getCardExpiryDate function testing
+
+
+int main(){
+
+    ST_cardData_t buyer ;
+    EN_cardError_t error = getCardExpiryDate(&buyer);
+
+    if(error == CARD_OK){
+
+        printf("the date is correct");
+        return 0;
+    } else
+        printf("the date is not correct");
+}
 */
 
 /**
 * getCardPAN function testing
-
 
 int main(){
 

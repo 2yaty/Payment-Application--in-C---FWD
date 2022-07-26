@@ -200,6 +200,13 @@ build CMakeFiles/Server.dir/Terminal/terminal.c.obj: C_COMPILER__Server_Debug F$
   OBJECT_DIR = CMakeFiles\Server.dir
   OBJECT_FILE_DIR = CMakeFiles\Server.dir\Terminal
 
+build CMakeFiles/Server.dir/Card/card.c.obj: C_COMPILER__Server_Debug F$:/Faculty/Embedd$ Course/Payment$ Application$ -in$ C$ -$ FWD/Card/card.c || cmake_object_order_depends_target_Server
+  DEP_FILE = CMakeFiles\Server.dir\Card\card.c.obj.d
+  FLAGS = -g -std=gnu11
+  INCLUDES = -I"F:/Faculty/Embedd Course/Payment Application -in C - FWD/." -I"F:/Faculty/Embedd Course/Payment Application -in C - FWD/Application" -I"F:/Faculty/Embedd Course/Payment Application -in C - FWD/Card" -I"F:/Faculty/Embedd Course/Payment Application -in C - FWD/Server" -I"F:/Faculty/Embedd Course/Payment Application -in C - FWD/Terminal" -I"F:/Faculty/Embedd Course/Payment Application -in C - FWD/Data" -I"F:/Faculty/Embedd Course/Payment Application -in C - FWD/Types"
+  OBJECT_DIR = CMakeFiles\Server.dir
+  OBJECT_FILE_DIR = CMakeFiles\Server.dir\Card
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Server
@@ -208,7 +215,7 @@ build CMakeFiles/Server.dir/Terminal/terminal.c.obj: C_COMPILER__Server_Debug F$
 #############################################
 # Link the executable Server.exe
 
-build Server.exe: C_EXECUTABLE_LINKER__Server_Debug CMakeFiles/Server.dir/Server/server.c.obj CMakeFiles/Server.dir/Terminal/terminal.c.obj
+build Server.exe: C_EXECUTABLE_LINKER__Server_Debug CMakeFiles/Server.dir/Server/server.c.obj CMakeFiles/Server.dir/Terminal/terminal.c.obj CMakeFiles/Server.dir/Card/card.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Server.dir

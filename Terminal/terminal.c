@@ -128,7 +128,7 @@ int main(){
 
     printf("%s", terminalData.transactionDate);
 }
- */
+*/
 
 /**
 * isCardExpired function testing

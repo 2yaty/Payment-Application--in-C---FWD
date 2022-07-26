@@ -2,7 +2,10 @@
 
 int main (void){
 
-    appStart();
+    while (1){
+        appStart();
+    }
+
 
     return 0;
 }

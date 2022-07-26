@@ -43,7 +43,7 @@ EN_serverError_t isValidAccount(ST_cardData_t *cardData){
 ST_accountsDB_t  temp;
 FILE* databaseFilePtr;
 uint8_t  i;
-    if ((databaseFilePtr = fopen("../Server/Database/database file.dat" , "rb+")) == NULL){
+    if ((databaseFilePtr = fopen("../Server/Database/database file.dat" , "rb")) == NULL){
         return ACCOUNT_NOT_FOUND;
     }
 
@@ -78,7 +78,7 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData){
 
     FILE* transFilePtr;
 
-    if((transFilePtr = fopen("../Server/Database/transaction file.dat" , "rb+")) == NULL)
+    if((transFilePtr = fopen("../Server/Database/transaction file.dat" , "ab")) == NULL)
         return SAVING_FAILED;
 
     fwrite(transData , sizeof (ST_transaction_t) , 1 , transFilePtr);
@@ -205,14 +205,14 @@ int main (void){
 
 
 int main (){
-    ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "4117394584032808" , "11/23"};
+    ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "5370233590092076" , "11/23"};
 
     EN_serverError_t  error = isValidAccount(&cardData);
 
     if(error == SERVER_OK)
         puts("valid card");
     else
-        puts("Account isn't in the data base ");
+        puts("Account isn't in the database ");
 }
 */
 
@@ -239,19 +239,20 @@ int main (){
 
 int main(){
 
-    ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "4117394584032808" , "11/23"};
+    ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "4117394584032555" , "11/23"};
     ST_terminalData_t  terminalData = { 500 , 5000,"24/07/2022"};
-    ST_transaction_t transaction={cardData, terminalData,APPROVED,1};
+    ST_transaction_t transaction={cardData, terminalData,APPROVED,2};
 
     saveTransaction(&transaction);
 
     ST_transaction_t temp;
 
-    getTransaction(0,&temp);
+    getTransaction(2,&temp);
 
     printf("%s\n" , temp.cardHolderData.cardHolderName);
-    printf("%s" , temp.cardHolderData.primaryAccountNumber);
-
+    printf("%s\n" , temp.cardHolderData.primaryAccountNumber);
+    printf("%s\n" , temp.cardHolderData.cardExpirationDate);
+    printf("%d\n" , temp.transactionSequenceNumber);
 }
 */
 
@@ -260,7 +261,7 @@ int main(){
 
 int main(){
 
-    ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "4117394584032808" , "11/23"};
+    ST_cardData_t cardData = {"Mohamed Ali Qiaty Ali" , "5370233590092076" , "11/21"};
     ST_terminalData_t  terminalData = { 500 , 5000,"24/07/2022"};
     ST_transaction_t transaction={cardData, terminalData,APPROVED,1};
 
@@ -285,13 +286,8 @@ int main(){
             return  0;
 
     }
-    ST_transaction_t temp;
 
-    getTransaction(0,&temp);
-
-    printf("%s\n" , temp.cardHolderData.cardHolderName);
-    printf("%s" , temp.cardHolderData.primaryAccountNumber);
 
 }
- */
+*/
 
