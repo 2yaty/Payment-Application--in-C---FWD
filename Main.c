@@ -1,6 +1,6 @@
 #include "Application/app.h"
 
 int main (void){
-        appStart();
+    appStart();
     return 0;
 }
